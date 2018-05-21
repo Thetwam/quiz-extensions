@@ -38,6 +38,7 @@ class Course(db.Model):
     __tablename__ = 'course'
     id = db.Column(db.Integer, primary_key=True)
     canvas_id = db.Column(db.Integer, unique=True)
+    canvas_term_id = db.Column(db.Integer)
     course_name = db.Column(db.String(250))
     created_date = db.Column(db.DateTime, server_default=db.func.now())
     extensions = db.relationship(
@@ -86,6 +87,13 @@ class Extension(db.Model):
         self.user_id = user_id
         self.percent = percent
 
+    def __repr__(self):
+        return '<Extension course: {} user: {} {}%>'.format(
+            self.course_id,
+            self.user_id,
+            self.percent
+        )
+
 
 class Quiz(db.Model):
     __tablename__ = 'quiz'
@@ -104,3 +112,6 @@ class Quiz(db.Model):
         self.canvas_id = canvas_id
         self.course_id = course_id
         self.title = title
+
+    def __repr__(self):
+        return '<Quiz {}>'.format(self.title)

@@ -2,6 +2,7 @@
 .coverage
 .DS_Store
 config.py
+report_config.py
 /venv
 /env
 /htmlcov
